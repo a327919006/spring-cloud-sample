@@ -14,9 +14,8 @@
 | 10 | cloud-sidecar | 多语言支持，springCloud包裹其他语言的接口，如php等 |
 | 11 | cloud-user-service | 用户服务 |
 
-#### 调用关系
-- 先启动eureka注册中心
-
-#### 注意
-- 系统启动时需先启动service层，再启动app或ftp层
-- app和ftp之间没有调用关系，不区分启动先后顺序，可只启动app与service或只启动ftp与service
+#### 启动步骤
+- 启动eureka注册中心
+- 启动配置中心
+- 启动user服务
+- 启动order服务
