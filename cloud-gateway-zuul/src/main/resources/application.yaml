@@ -1,0 +1,34 @@
+server:
+  port: 8040
+
+spring:
+  application:
+    name: ${artifactId}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://techfish:techfish123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+
+zuul:
+#  ignored-services: '*'
+#  ignored-services: cloud-order-service,cloud-user-service
+#  routes:
+#    cloud-order-service: /order/**
+#    mytest1: #mytest1可以改成任意的字符串
+#      path: /myorder1/**
+#      serviceId: cloud-order-service
+#    mytest2:
+#      path: /myorder2/**
+#      url: http://localhost:10091
+#  prefix: /order
+#  strip-prefix: false
+
+management:
+ endpoints:
+   web:
+     exposure:
+       include: '*'

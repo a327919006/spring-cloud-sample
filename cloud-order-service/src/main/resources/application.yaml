@@ -1,0 +1,56 @@
+server:
+  port: 10091
+#  servlet:
+#    context-path: /${artifactId}
+
+#spring:
+#  application:
+#    name: ${artifactId}
+#  cloud:
+#    config:
+#      uri: http://localhost:8070
+
+
+#------------Eureka------------
+eureka:
+  client:
+    service-url: # eureka服务地址
+      defaultZone: http://techfish:techfish123@localhost:8761/eureka
+#      eureka高可用，有多少台连多少台
+#      defaultZone: http://techfish:techfish123@localhost:8761/eureka,http://techfish:techfish123@localhost:8761/eureka,http://techfish:techfish123@localhost:8762/eureka
+  instance:
+    prefer-ip-address: true #在服务端看到的是ip
+    # 服务标识，默认带主机名
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    metadata-map:
+      management.port: 10092
+      mydata1: 123
+      mydata2: 444
+#    home-page-url-path: /${artifactId}
+
+#------------Ribbon-------------
+#配置ribbon自定义负载均衡策略，cloud-user-service为服务名
+cloud-user-service:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#配置ribbon不走eureka
+#    listOfServers: localhost:10092
+#
+#ribbon:
+#  eureka:
+#    enabled: false
+
+
+#------------Actuator-Hystrix监控-----------
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  server:
+    port: 10092
+
+#-------------Feign------------
+feign:
+  hystrix:
+    enabled: true #feign开启hystrix

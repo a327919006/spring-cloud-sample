@@ -1,0 +1,26 @@
+server:
+  port: 8070
+
+spring:
+  application:
+    name: ${artifactId}
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/NuLiing/spring-cloud-config-test.git
+  security: #配置身份验证
+    user:
+      name: techfish #账号
+      password: techfish123 #密码
+
+encrypt:
+  key: cntest
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://techfish:techfish123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}

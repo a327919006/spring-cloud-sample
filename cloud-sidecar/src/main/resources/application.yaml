@@ -1,0 +1,25 @@
+server:
+  port: 8050
+
+spring:
+  application:
+    name: ${artifactId}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://techfish:techfish123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+
+management:
+ endpoints:
+   web:
+     exposure:
+       include: '*'
+
+sidecar:
+  port: 8060 #第三方应用端口
+  health-uri: http://localhost:8060/health.json #第三方应用健康校验接口
+

@@ -1,0 +1,17 @@
+server:
+  port: 10090
+
+spring:
+  application:
+    name: ${artifactId}
+
+eureka:
+  client:
+    service-url: # eureka服务地址
+      defaultZone: http://techfish:techfish123@localhost:8761/eureka
+#      eureka高可用，有多少台，连多少台
+#      defaultZone: http://techfish:techfish123@localhost:8761/eureka,http://techfish:techfish123@localhost:8762/eureka,http://techfish:techfish123@localhost:8763/eureka
+  instance:
+    prefer-ip-address: true #在服务端看到的是ip
+    # 服务标识，默认带主机名
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
