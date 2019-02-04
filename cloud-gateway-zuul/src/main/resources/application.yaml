@@ -16,11 +16,11 @@ eureka:
 zuul:
 #  ignored-services: '*'
 #  ignored-services: cloud-order-service,cloud-user-service
-#  routes:
-#    cloud-order-service: /order/**
-#    mytest1: #mytest1可以改成任意的字符串
-#      path: /myorder1/**
-#      serviceId: cloud-order-service
+  routes:
+    cloud-order-service: /order/**
+    mytest1: #mytest1可以改成任意的字符串
+      path: /myorder1/**
+      serviceId: cloud-order-service
 #    mytest2:
 #      path: /myorder2/**
 #      url: http://localhost:10091

@@ -20,6 +20,10 @@
         <module>cloud-gateway-zuul</module>
         <module>cloud-sidecar</module>
         <module>cloud-config-server</module>
+        <module>cloud-user-service-zk</module>
+        <module>cloud-order-service-zk</module>
+        <module>cloud-user-service-consul</module>
+        <module>cloud-order-service-consul</module>
     </modules>
 
     <properties>
@@ -32,7 +36,7 @@
 
         <!--spring boot-->
         <spring-boot.version>2.1.2.RELEASE</spring-boot.version>
-        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
+        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
 
         <lombok.version>1.18.4</lombok.version>
         <hutool.version>4.4.0</hutool.version>

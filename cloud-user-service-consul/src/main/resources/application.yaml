@@ -1,0 +1,16 @@
+server:
+  port: 10092
+
+spring:
+  application:
+    name: ${artifactId}
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
