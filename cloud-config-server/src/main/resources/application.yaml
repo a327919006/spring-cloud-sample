@@ -9,10 +9,11 @@ spring:
       server:
         git:
           uri: https://gitee.com/NuLiing/spring-cloud-config-test.git
+      label: master #读取分支
   security: #配置身份验证
     user:
-      name: techfish #账号
-      password: techfish123 #密码
+      name: sample #账号
+      password: sample123 #密码
 
 encrypt:
   key: cntest
@@ -20,7 +21,7 @@ encrypt:
 eureka:
   client:
     service-url:
-      defaultZone: http://techfish:techfish123@localhost:8761/eureka
+      defaultZone: http://sample:sample123@localhost:8761/eureka
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}

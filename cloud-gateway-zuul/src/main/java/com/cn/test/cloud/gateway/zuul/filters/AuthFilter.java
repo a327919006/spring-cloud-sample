@@ -4,11 +4,11 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.cn.test.cloud.common.model.Constants;
 import com.cn.test.cloud.common.model.dto.RspBase;
-import com.cn.test.cloud.common.model.enums.EnumZuulFilterType;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
@@ -34,7 +34,7 @@ public class AuthFilter extends ZuulFilter {
      */
     @Override
     public String filterType() {
-        return EnumZuulFilterType.PRE.getValue();
+        return FilterConstants.PRE_TYPE;
     }
 
     /**

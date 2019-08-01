@@ -8,10 +8,11 @@ spring:
     name: ${artifactId}
   cloud:
     config:
-#      uri: http://techfish:techfish123@localhost:8070
+      uri: http://sample:sample123@localhost:8070
 #      uri: http://localhost:8070
-      username: techfish # configServer的账号
-      password: techfish123 # configServer的密码
+      username: sample # configServer的账号
+      password: sample123 # configServer的密码
+#      profile: default #读取后缀（环境，比如test，dev等）
       discovery: # configServer地址从Eureka上获取
         enabled: true
         service-id: cloud-config-server
@@ -20,7 +21,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://techfish:techfish123@localhost:8761/eureka
+      defaultZone: http://sample:sample123@localhost:8761/eureka
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
