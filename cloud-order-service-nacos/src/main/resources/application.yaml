@@ -1,0 +1,20 @@
+server:
+  port: 10091
+
+spring:
+  application:
+    name: ${artifactId}
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        # 本地端口
+        port: 8719
+        # sentinel服务端地址
+        dashboard: localhost:8090
+
+feign:
+  sentinel:
+    enabled: true
