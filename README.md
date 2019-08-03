@@ -12,7 +12,7 @@ SpringCloud示例：整合Eureka、Zuul、Feign、Ribbon、Hystrix等
 | ----- | cloud-dal | mybatisMapper，sql |
 | 8761  | cloud-eureka | eureka注册中心 |
 | 8763  | cloud-eureka-ha | eureka注册中心集群 |
-| 8040  | cloud-gateway | spring-cloud-gateway网关 |
+| 8060,8720  | cloud-gateway | spring-cloud-gateway网关，注册中心为nacos，整合sentinel |
 | 8040  | cloud-gateway-zuul | zuul网关 |
 | 8030  | cloud-hystrix-dashboard | hystrix可视化 |
 | 8031  | cloud-hystrix-turbine | hystrix多模块监控 |
@@ -23,7 +23,7 @@ SpringCloud示例：整合Eureka、Zuul、Feign、Ribbon、Hystrix等
 | 10090 | cloud-user-service-zk | 用户服务，注册中心为zookeeper |
 | 10091 | cloud-order-service | 订单服务，注册中心为eureka |
 | 10091 | cloud-order-service-consul | 订单服务，注册中心为consul |
-| 10091 | cloud-order-service-nacos | 订单服务，注册中心为nacos |
+| 10091,8719 | cloud-order-service-nacos | 订单服务，注册中心为nacos，整合sentinel |
 | 10091 | cloud-order-service-zk | 订单服务，注册中心为zookeeper |
 | 9411  | cloud-zipkin | 链路跟踪 |
 
