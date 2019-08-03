@@ -28,6 +28,7 @@
         <module>cloud-stream</module>
         <module>cloud-zipkin</module>
         <module>cloud-order-service-nacos</module>
+        <module>cloud-gateway</module>
     </modules>
 
     <properties>
