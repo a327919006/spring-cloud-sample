@@ -1,6 +1,5 @@
 package com.cn.test.cloud.gateway.zuul.filters;
 
-import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.cn.test.cloud.common.model.Constants;
 import com.cn.test.cloud.common.model.dto.RspBase;
@@ -8,6 +7,7 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -79,7 +79,7 @@ public class AuthFilter extends ZuulFilter {
 
         String accessToken = request.getHeader("accessToken");
         // 对请求头accessToken进行校验，如果无效，直接返回错误信息
-        if (invalidToken(accessToken)) {
+        if (!validToken(accessToken)) {
             context.setSendZuulResponse(false); // 过滤该请求，不对其进行路由
             context.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
             context.setResponseBody(JSONUtil.toJsonStr(new RspBase(Constants.CODE_FAILURE, "INVALID TOKEN")));
@@ -91,17 +91,14 @@ public class AuthFilter extends ZuulFilter {
      * 校验token是否有效
      *
      * @param accessToken accessToken
-     * @return true token无效  false token有效
+     * @return true token有效  false token无效
      */
-    private boolean invalidToken(String accessToken) {
-        if (StrUtil.isBlank(accessToken)) {
-            return true;
-        }
-
-        // 去redis校验token是否有效
-        if (accessToken.contains("1")) {
+    private boolean validToken(String accessToken) {
+        if (StringUtils.isBlank(accessToken)) {
             return false;
         }
-        return true;
+
+        // 根据业务规则校验token是否有效
+        return accessToken.contains("1");
     }
 }
