@@ -26,6 +26,8 @@ SpringCloud示例：整合Eureka、Zuul、Feign、Ribbon、Hystrix等
 | 10091,8719 | cloud-order-service-nacos | 订单服务，注册中心为nacos，整合sentinel |
 | 10091 | cloud-order-service-zk | 订单服务，注册中心为zookeeper |
 | 9411  | cloud-zipkin | 链路跟踪 |
+| 10092  | cloud-rocketmq-producer | 消息生产者，整合RocketMQ |
+| 10093  | cloud-rocketmq-consumer | 消息消费者，整合RocketMQ |
 
 #### 启动步骤
 - 启动eureka注册中心

@@ -30,6 +30,8 @@
         <module>cloud-order-service-nacos</module>
         <module>cloud-gateway</module>
         <module>cloud-skywalking</module>
+        <module>cloud-rocketmq-producer</module>
+        <module>cloud-rocketmq-consumer</module>
     </modules>
 
     <properties>
