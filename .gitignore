@@ -5,4 +5,4 @@ logs/
 out/
 *.iml
 target/
-cloud-skywalking/**
+cloud-skywalking
