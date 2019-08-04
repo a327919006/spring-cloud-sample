@@ -27,7 +27,7 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class OrderController {
 
-    @Value("${profile}")
+//    @Value("${profile}")
     private String profile;
 
     @Autowired
