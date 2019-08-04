@@ -29,6 +29,7 @@
         <module>cloud-zipkin</module>
         <module>cloud-order-service-nacos</module>
         <module>cloud-gateway</module>
+        <module>cloud-skywalking</module>
     </modules>
 
     <properties>
