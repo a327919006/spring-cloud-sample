@@ -32,6 +32,8 @@
         <module>cloud-skywalking</module>
         <module>cloud-rocketmq-producer</module>
         <module>cloud-rocketmq-consumer</module>
+        <module>cloud-user-service-dubbo</module>
+        <module>cloud-order-service-dubbo</module>
     </modules>
 
     <properties>
