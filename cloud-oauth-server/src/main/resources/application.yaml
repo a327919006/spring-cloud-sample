@@ -1,0 +1,9 @@
+server:
+  port: 10094
+
+spring:
+  application:
+    name: ${artifactId}
+
+
+
