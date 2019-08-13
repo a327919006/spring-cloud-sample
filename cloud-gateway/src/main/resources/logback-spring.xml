@@ -2,7 +2,7 @@
 <configuration>
 
     <property name="logback.logdir" value="./logs"/>
-    <property name="logback.appname" value="cloud-gateway-zuul"/>
+    <property name="logback.appname" value="${artifactId}"/>
     <property name="logback.pattern" value="%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n"/>
 
     <!-- 彩色日志 -->

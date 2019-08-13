@@ -29,11 +29,11 @@
         <module>cloud-zipkin</module>
         <module>cloud-order-service-nacos</module>
         <module>cloud-gateway</module>
-        <module>cloud-skywalking</module>
         <module>cloud-rocketmq-producer</module>
         <module>cloud-rocketmq-consumer</module>
         <module>cloud-user-service-dubbo</module>
         <module>cloud-order-service-dubbo</module>
+        <module>cloud-oauth-server</module>
     </modules>
 
     <properties>
