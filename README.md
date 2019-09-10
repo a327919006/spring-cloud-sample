@@ -28,6 +28,7 @@ SpringCloud示例：整合Eureka、Zuul、Feign、Ribbon、Hystrix等
 | 9411  | cloud-zipkin | 链路跟踪 |
 | 10092  | cloud-rocketmq-producer | 消息生产者，整合RocketMQ |
 | 10093  | cloud-rocketmq-consumer | 消息消费者，整合RocketMQ |
+| 10094  | cloud-oauth-server | 认证服务器，整合spring-security-oauth2 |
 
 #### 启动步骤
 - 启动eureka注册中心
