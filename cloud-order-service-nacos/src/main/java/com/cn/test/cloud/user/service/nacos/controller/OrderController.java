@@ -1,5 +1,7 @@
 package com.cn.test.cloud.user.service.nacos.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.cn.test.cloud.common.model.Constants;
 import com.cn.test.cloud.common.model.dto.RspBase;
 import com.cn.test.cloud.user.service.nacos.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -39,8 +41,10 @@ public class OrderController {
     private ConfigurableApplicationContext config;
 
     @GetMapping("/{id}")
+    @SentinelResource(value = "getOrder", defaultFallback = "defaultFail")
     public RspBase get(@PathVariable String id, @RequestHeader(required = false) String myHeader) {
-        log.info("【订单】开始获取,myHeader={}", myHeader);
+        log.info("【订单】开始获取,id={},myHeader={}", id, myHeader);
+        int i = Integer.parseInt(id);
         ServiceInstance serviceInstance = loadBalancerClient.choose("cloud-user-service-nacos");
         String url = String.format("http://%s:%s/user/%s", serviceInstance.getHost(), serviceInstance.getPort(), id);
         RspBase result = restTemplate.getForObject(url, RspBase.class);
@@ -69,5 +73,10 @@ public class OrderController {
         log.info("【配置】开始获取age");
         log.info("【配置】获取成功age");
         return age;
+    }
+
+    public RspBase defaultFail() {
+        log.info("【订单】失败");
+        return new RspBase(Constants.CODE_FAILURE, "失败");
     }
 }
