@@ -38,7 +38,7 @@ public class AuthFilter implements GlobalFilter {
 
         DataBuffer dataBuffer = response.bufferFactory().wrap(JSONUtil.toJsonStr(rspBase).getBytes());
         response.setStatusCode(HttpStatus.UNAUTHORIZED);
-        response.getHeaders().add("Content-Type", MediaType.APPLICATION_PROBLEM_JSON_UTF8_VALUE);
+        response.getHeaders().add("Content-Type", MediaType.APPLICATION_JSON_VALUE);
         return response.writeWith(Mono.just(dataBuffer));
     }
 
