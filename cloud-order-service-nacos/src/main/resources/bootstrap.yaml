@@ -9,8 +9,14 @@ spring:
       config:
         # 指定查找名为 ${artifactId}-config.yaml 的配置文件
         file-extension: yaml
+        # 声明基础配置文件，多个配置中有相同部分可声明在基础配置中，支持配置多项
+        shared-configs:
+          - data-id: common-${profileActive}.yaml
+            refresh: true
       discovery:
+        # 服务注册时上报的ip
         ip: 127.0.0.1
+        server-addr: localhost:8848
     sentinel:
       transport:
         port: 8720
