@@ -17,6 +17,10 @@ spring:
         # 服务注册时上报的ip
         ip: 127.0.0.1
         server-addr: localhost:8848
+        # 服务注册是写入自定义元数据
+        metadata:
+          data1: aaa
+          dataxx: bbb
     sentinel:
       transport:
         port: 8720
