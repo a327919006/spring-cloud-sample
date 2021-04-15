@@ -1,4 +1,10 @@
 user:
   age: 15
 
-
+ribbon:
+  # 饥饿加载
+  eager-load:
+    enabled: true
+    # 声明需要饥饿加载的服务
+    clients:
+    - cloud-user-service-nacos
