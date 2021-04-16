@@ -19,6 +19,7 @@ spring:
         server-addr: localhost:8848
         # 服务注册是写入自定义元数据
         metadata:
+          cn-version: ${project.version}
           data1: aaa
           dataxx: bbb
     sentinel:
