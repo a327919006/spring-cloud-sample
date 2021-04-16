@@ -40,6 +40,12 @@ cloud-user-service:
 #  eureka:
 #    enabled: false
 
+#ribbon:
+#  ConnectTimeout: 1000 #ribbon连接超时时长
+#  ReadTimeout: 3500 #ribbon读取超时时长
+#  MaxAutoRetries: 0 #当前服务重试次数
+#  MaxAutoRetriesNextServer: 0 # 切换服务重试次数（服务高可用情况），默认1
+#  okToRetryOnAllOperations: false #true所有请求都重试，false重试GET请求
 
 #------------Actuator-Hystrix监控-----------
 management:
