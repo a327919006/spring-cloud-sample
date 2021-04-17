@@ -6,16 +6,16 @@
 spring:
   application:
     name: ${artifactId}
-  cloud:
-    config:
-      uri: http://sample:sample123@localhost:8070
+#  cloud:
+#    config:
+#      uri: http://sample:sample123@localhost:8070
 #      uri: http://localhost:8070
-      username: sample # configServer的账号
-      password: sample123 # configServer的密码
+#      username: sample # configServer的账号
+#      password: sample123 # configServer的密码
 #      profile: default #读取后缀（环境，比如test，dev等）
-      discovery: # configServer地址从Eureka上获取
-        enabled: true
-        service-id: cloud-config-server
+#      discovery: # configServer地址从Eureka上获取
+#        enabled: true
+#        service-id: cloud-config-server
 
 
 eureka:
