@@ -26,7 +26,15 @@ spring:
       transport:
         port: 8720
         dashboard: localhost:8090
-
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}
+#            groupId: DEV
+#            namespace: 8622d428-0496-4a09-b178-da3cfc736055
+#            data-type: json
+#            rule-type: flow
 
 
 
