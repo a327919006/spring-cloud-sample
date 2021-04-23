@@ -40,4 +40,6 @@ public class Constants {
     public static final String MSG_INVALID_CLIENT = "INVALID CLIENT";
 
     public static final RspBase RSP_FALLBACK = new RspBase(CODE_FAILURE, "请求超时！");
+
+    public static final String HEADER_VERSION = "cnte-version";
 }
