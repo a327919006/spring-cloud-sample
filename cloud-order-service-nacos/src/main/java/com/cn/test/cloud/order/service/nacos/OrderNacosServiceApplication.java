@@ -1,4 +1,4 @@
-package com.cn.test.cloud.user.service.nacos;
+package com.cn.test.cloud.order.service.nacos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

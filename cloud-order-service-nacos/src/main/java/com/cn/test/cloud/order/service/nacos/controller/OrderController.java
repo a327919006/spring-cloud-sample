@@ -1,9 +1,9 @@
-package com.cn.test.cloud.user.service.nacos.controller;
+package com.cn.test.cloud.order.service.nacos.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cn.test.cloud.common.model.Constants;
 import com.cn.test.cloud.common.model.dto.RspBase;
-import com.cn.test.cloud.user.service.nacos.service.UserService;
+import com.cn.test.cloud.order.service.nacos.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

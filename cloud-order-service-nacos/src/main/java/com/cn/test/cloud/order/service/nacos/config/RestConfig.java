@@ -1,4 +1,4 @@
-package com.cn.test.cloud.user.service.nacos.config;
+package com.cn.test.cloud.order.service.nacos.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

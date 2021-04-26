@@ -1,4 +1,4 @@
-package com.cn.test.cloud.user.service.nacos.config;
+package com.cn.test.cloud.order.service.nacos.config;
 
 import com.alibaba.cloud.nacos.ribbon.NacosRule;
 import com.netflix.loadbalancer.IRule;
@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * @author Chen Nan
  */
-@Configuration
+//@Configuration
 public class NacosConfig {
 
     /**

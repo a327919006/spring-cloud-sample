@@ -23,6 +23,7 @@ spring:
           data1: aaa
           dataxx: bbb
     sentinel:
+      enabled: false
       transport:
         port: 8720
         dashboard: localhost:8090
