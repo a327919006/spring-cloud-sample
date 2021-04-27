@@ -77,6 +77,13 @@ public class OrderController {
         return age;
     }
 
+    @GetMapping("/test/error")
+    public String testError() {
+        log.info("【测试】发生业务异常，上报prometheus");
+        int i = 1 / 0;
+        return age;
+    }
+
     public RspBase defaultFail() {
         log.info("【订单】失败");
         return new RspBase(Constants.CODE_FAILURE, "失败");
