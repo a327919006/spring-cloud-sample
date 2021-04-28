@@ -69,7 +69,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.cn.test.cloud.user.service.nacos.OrderNacosServiceApplication</mainClass>
+                    <mainClass>com.cn.test.cloud.order.service.nacos.OrderNacosServiceApplication</mainClass>
                     <outputDirectory>../target</outputDirectory>
                 </configuration>
                 <executions>
