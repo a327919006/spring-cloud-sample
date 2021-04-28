@@ -1,5 +1,6 @@
 package com.cn.test.cloud.order.service.nacos.aop;
 
+import com.alibaba.fastjson.JSONObject;
 import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.Counter;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 /**
  * 自定义Prometheus埋点
@@ -29,7 +33,7 @@ public class PrometheusAspect {
 
     public PrometheusAspect(CollectorRegistry collectorRegistry) {
         counter = Counter.build("sample_error_request", "Request error")
-                .labelNames("requestURI", "traceId", "error")
+                .labelNames("requestURI", "traceId", "error", "time", "param")
                 .register(collectorRegistry);
     }
 
@@ -48,13 +52,17 @@ public class PrometheusAspect {
             return;
         }
         HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        String param = "";
+        if (parameterMap != null) {
+            param = JSONObject.toJSONString(parameterMap);
+        }
 
         String requestURI = request.getRequestURI();
         String traceId = MDC.get("traceId");
         String error = e.getMessage();
-        log.info("requestURI={}", requestURI);
-        log.info("traceId={}", traceId);
-        counter.labels(requestURI, traceId, error).inc();
+        String time = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        counter.labels(requestURI, traceId, error, time, param).inc();
     }
 
 //    @AfterReturning(pointcut = "prometheus()", returning = "ret")
