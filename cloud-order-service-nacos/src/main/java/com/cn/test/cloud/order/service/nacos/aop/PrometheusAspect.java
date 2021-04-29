@@ -1,5 +1,6 @@
 package com.cn.test.cloud.order.service.nacos.aop;
 
+import brave.Tracer;
 import com.alibaba.fastjson.JSONObject;
 import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.Counter;
@@ -13,6 +14,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -28,6 +30,9 @@ import java.util.Map;
 @Aspect
 @Component
 public class PrometheusAspect {
+
+    @Resource
+    private Tracer tracer;
 
     private Counter counter;
 
@@ -59,9 +64,12 @@ public class PrometheusAspect {
         }
 
         String requestURI = request.getRequestURI();
-        String traceId = MDC.get("traceId");
+        // 两种方式获取TraceId，结果一样
+//        String traceId = MDC.get("traceId");
+        String traceId = String.valueOf(tracer.currentSpan().context().traceIdString());
         String error = e.getMessage();
         String time = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
         counter.labels(requestURI, traceId, error, time, param).inc();
     }
 
