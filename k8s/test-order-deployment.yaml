@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml -o cnte-energy -c
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: test-order
+  name: test-order
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: test-order
+      logging: fluentd
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml -o cnte-energy -c
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: test-order
+        logging: fluentd
+    spec:
+      containers:
+        - env:
+            - name: TZ
+              value: Asia/Shanghai
+          image: 192.168.1.222:5000/cnte-test/test-order:2.1
+          name: test-order
+          ports:
+            - containerPort: 10091
+          resources: {}
+      terminationGracePeriodSeconds: 60  
+      restartPolicy: Always
+status: {}
