@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    io.kompose.service: test-order
+    sample.service: test-order
   name: test-order
 spec:
   externalTrafficPolicy: Cluster
@@ -14,7 +14,7 @@ spec:
       port: 12000
       targetPort: 12000
   selector:
-    io.kompose.service: test-order
+    sample.service: test-order
   type: LoadBalancer
 status:
   loadBalancer: {}
