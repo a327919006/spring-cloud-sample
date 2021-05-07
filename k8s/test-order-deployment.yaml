@@ -1,28 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose.yml -o cnte-energy -c
-    kompose.version: 1.22.0 (955b78124)
-  creationTimestamp: null
   labels:
-    io.kompose.service: test-order
+    sample.service: test-order
   name: test-order
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: test-order
+      sample.service: test-order
       logging: fluentd
   strategy: {}
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert -f docker-compose.yml -o cnte-energy -c
-        kompose.version: 1.22.0 (955b78124)
-      creationTimestamp: null
       labels:
-        io.kompose.service: test-order
+        sample.service: test-order
         logging: fluentd
     spec:
       containers:
@@ -33,6 +25,7 @@ spec:
           name: test-order
           ports:
             - containerPort: 10091
+            - containerPort: 12000
           livenessProbe:
             httpGet:
               path: "/actuator/health/liveness"
