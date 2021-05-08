@@ -21,7 +21,7 @@ spec:
         - env:
             - name: TZ
               value: Asia/Shanghai
-          image: 192.168.1.222:5000/cnte-test/test-order:2.1
+          image: 192.168.1.222:5000/cnte-test/test-order:2.2
           name: test-order
           ports:
             - containerPort: 10091

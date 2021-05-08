@@ -10,9 +10,9 @@ spec:
     - name: "10091"
       port: 10091
       targetPort: 10091
-    - name: "12000"
-      port: 12000
-      targetPort: 12000
+#    - name: "12000"
+#      port: 12000
+#      targetPort: 12000
   selector:
     sample.service: test-order
   type: LoadBalancer
