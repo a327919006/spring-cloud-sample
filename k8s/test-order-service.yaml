@@ -15,6 +15,6 @@ spec:
 #      targetPort: 12000
   selector:
     sample.service: test-order
-  type: LoadBalancer
+  type: NodePort
 status:
   loadBalancer: {}
