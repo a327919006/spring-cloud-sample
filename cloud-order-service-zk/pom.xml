@@ -32,6 +32,7 @@
             </exclusions>
         </dependency>
 
+        <!--zk，版本与安装的zk版本保持一致，同时exclude掉zookeeper-discovery带的zk-->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
