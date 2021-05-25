@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * 编码方式实现路由转发
+ *
  * @author Chen Nan
  */
 @Configuration
@@ -16,10 +18,10 @@ public class GatewayConfig {
         return builder.routes()
                 .route(r -> r.path("/order/**")
                         .filters(f -> {
-                            f.addResponseHeader("myHeader", "test01");
-                            f.addRequestHeader("myHeader", "test02");
-                            return f;
-                        }
+                                    f.addResponseHeader("myHeader", "test01");
+                                    f.addRequestHeader("myHeader", "test02");
+                                    return f;
+                                }
 
                         )
                         .uri("http://localhost:10091")
