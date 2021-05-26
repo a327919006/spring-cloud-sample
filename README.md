@@ -25,7 +25,7 @@ SpringCloud示例：整合Eureka、Zuul、Feign、Ribbon、Hystrix等
 | 10091      | cloud-order-service-consul | 订单服务，注册中心为consul |
 | 10091,8719 | cloud-order-service-nacos  | 订单服务(10091)，注册中心为nacos，整合sentinel(8719) |
 | 10091      | cloud-order-service-zk     | 订单服务，注册中心为zookeeper |
-| 9411       | cloud-zipkin               | 链路跟踪     |
+| 9411       | cloud-zipkin               | (废弃)zipkin-server链路跟踪，新版直接从官方下载jar包启动 |
 | 10092      | cloud-rocketmq-producer    | 消息生产者，整合RocketMQ |
 | 10093      | cloud-rocketmq-consumer    | 消息消费者，整合RocketMQ |
 | 10094      | cloud-oauth-server         | 认证服务器，整合spring-security-oauth2 |
@@ -34,6 +34,5 @@ SpringCloud示例：整合Eureka、Zuul、Feign、Ribbon、Hystrix等
 
 #### 启动步骤
 - 启动eureka注册中心
-- 启动配置中心
 - 启动user服务
 - 启动order服务
