@@ -17,23 +17,24 @@
         <module>cloud-user-service-zk</module>
         <module>cloud-user-service-consul</module>
         <module>cloud-user-service-nacos</module>
+        <module>cloud-user-service-dubbo</module>
         <module>cloud-order-service</module>
         <module>cloud-order-service-zk</module>
         <module>cloud-order-service-consul</module>
+        <module>cloud-order-service-nacos</module>
+        <module>cloud-order-service-dubbo</module>
         <module>cloud-hystrix-dashboard</module>
         <module>cloud-hystrix-turbine</module>
+        <module>cloud-gateway</module>
         <module>cloud-gateway-zuul</module>
         <module>cloud-sidecar</module>
         <module>cloud-config-server</module>
-        <module>cloud-stream</module>
         <module>cloud-zipkin</module>
-        <module>cloud-order-service-nacos</module>
-        <module>cloud-gateway</module>
         <module>cloud-rocketmq-producer</module>
         <module>cloud-rocketmq-consumer</module>
-        <module>cloud-user-service-dubbo</module>
-        <module>cloud-order-service-dubbo</module>
         <module>cloud-oauth-server</module>
+        <module>cloud-stream-provider</module>
+        <module>cloud-stream-consumer</module>
     </modules>
 
     <properties>
