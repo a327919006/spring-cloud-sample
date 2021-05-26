@@ -1,0 +1,24 @@
+server:
+  port: 10096
+
+spring:
+  application:
+    name: ${artifactId}
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: 127.0.0.1:9876
+      bindings:
+        output:
+          group: cntest-out-group
+          destination: cntest-topic
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://sample:sample123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
