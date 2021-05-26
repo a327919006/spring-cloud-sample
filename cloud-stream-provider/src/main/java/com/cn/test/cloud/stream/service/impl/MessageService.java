@@ -21,9 +21,10 @@ public class MessageService implements IMessageService {
     private MessageChannel output;
 
     @Override
-    public void send(String msg) {
+    public String send(String msg) {
         String id = IdUtil.simpleUUID();
         String payload = msg + ":" + id;
         output.send(MessageBuilder.withPayload(payload).build());
+        return payload;
     }
 }

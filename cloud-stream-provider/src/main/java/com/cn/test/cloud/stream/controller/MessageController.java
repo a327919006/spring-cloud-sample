@@ -27,8 +27,8 @@ public class MessageController {
     @GetMapping("/send/{msg}")
     public Object send(@PathVariable("msg") String msg) {
         log.info("【消息】开始发送" + msg);
-        messageService.send(msg);
+        String result = messageService.send(msg);
         log.info("【消息】发送成功" + msg);
-        return new RspBase().data(msg);
+        return new RspBase().data(result);
     }
 }
