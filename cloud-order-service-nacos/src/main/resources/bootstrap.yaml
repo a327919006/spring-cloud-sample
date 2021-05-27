@@ -25,13 +25,13 @@ spring:
     sentinel:
       enabled: false
       transport:
-        port: 8720
-        dashboard: localhost:8090
-      datasource:
-        ds1:
-          nacos:
-            server-addr: localhost:8848
-            dataId: ${spring.application.name}
+        dashboard: localhost:8090 #配置Sentinel dashboard地址
+        port: 8719 #通信端口，默认8719，如果被占用会依次+1扫描，直至找到可用端口
+#      datasource:
+#        ds1:
+#          nacos:
+#            server-addr: localhost:8848
+#            dataId: ${spring.application.name}
 #            groupId: DEV
 #            namespace: 8622d428-0496-4a09-b178-da3cfc736055
 #            data-type: json
