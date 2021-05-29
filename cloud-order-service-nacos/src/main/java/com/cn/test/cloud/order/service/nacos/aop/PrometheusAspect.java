@@ -28,7 +28,7 @@ import java.util.Map;
  */
 @Slf4j
 @Aspect
-@Component
+//@Component
 public class PrometheusAspect {
 
     @Resource

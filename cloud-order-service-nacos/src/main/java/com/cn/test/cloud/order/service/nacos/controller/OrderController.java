@@ -1,6 +1,7 @@
 package com.cn.test.cloud.order.service.nacos.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.cn.test.cloud.common.model.Constants;
 import com.cn.test.cloud.common.model.dto.RspBase;
 import com.cn.test.cloud.order.service.nacos.service.UserService;
@@ -71,6 +72,7 @@ public class OrderController {
     }
 
     @GetMapping("/config/age")
+    @SentinelResource(value = "getConfig", blockHandler = "defaultBlock")
     public String getAge() {
         log.info("【配置】开始获取age");
         log.info("【配置】获取成功age");
@@ -87,5 +89,9 @@ public class OrderController {
     public RspBase defaultFail() {
         log.info("【订单】失败");
         return new RspBase(Constants.CODE_FAILURE, "失败");
+    }
+
+    public String defaultBlock(BlockException exception) {
+        return "自定义BLOCK信息";
     }
 }

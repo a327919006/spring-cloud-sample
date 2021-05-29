@@ -25,7 +25,7 @@ spring:
     sentinel:
       enabled: false
       transport:
-        dashboard: localhost:8090 #配置Sentinel dashboard地址
+        dashboard: localhost:8090 #配置Sentinel dashboard地址，默认8080
         port: 8719 #通信端口，默认8719，如果被占用会依次+1扫描，直至找到可用端口
 #      datasource:
 #        ds1:
