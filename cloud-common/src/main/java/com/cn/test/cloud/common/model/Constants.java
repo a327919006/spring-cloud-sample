@@ -32,6 +32,7 @@ public class Constants {
      * MSG
      */
     public static final String MSG_SUCCESS = "SUCCESS";
+    public static final String MSG_FAIL = "FAIL";
     public static final String MSG_CMS_SUCCESS = "操作成功";
     public static final String MSG_READ_CONFIG_ERROR = "读取配置文件错误";
     public static final String MSG_NO_URL = "请求的URL不存在，请检查";

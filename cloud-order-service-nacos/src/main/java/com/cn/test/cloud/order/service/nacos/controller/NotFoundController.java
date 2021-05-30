@@ -20,7 +20,7 @@ import java.util.Map;
  *
  * @author Chen Nan
  */
-@RestController
+//@RestController
 public class NotFoundController implements ErrorController {
 
     /**

@@ -4,6 +4,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.cn.test.cloud.common.model.Constants;
 import com.cn.test.cloud.common.model.dto.RspBase;
+import com.cn.test.cloud.order.service.nacos.aop.SentinelBlockHandler;
 import com.cn.test.cloud.order.service.nacos.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,8 @@ public class OrderController {
     private ConfigurableApplicationContext config;
 
     @GetMapping("/{id}")
-    @SentinelResource(value = "getOrder", defaultFallback = "defaultFail")
+//    @SentinelResource(value = "getOrder", fallback = "fallback", blockHandler = "defaultBlock")
+    @SentinelResource(value = "getOrder", defaultFallback = "defaultFail", blockHandler = "defaultBlock")
     public RspBase get(@PathVariable String id, @RequestHeader(required = false) String myHeader) {
         log.info("【订单】开始获取,id={},myHeader={}", id, myHeader);
         int i = Integer.parseInt(id);
@@ -72,11 +74,12 @@ public class OrderController {
     }
 
     @GetMapping("/config/age")
-    @SentinelResource(value = "getConfig", blockHandler = "defaultBlock")
-    public String getAge() {
+//    @SentinelResource(value = "getConfig", blockHandler = "defaultBlock")
+    @SentinelResource(value = "getConfig", blockHandlerClass = SentinelBlockHandler.class, blockHandler = "rateLimit")
+    public RspBase getAge() {
         log.info("【配置】开始获取age");
         log.info("【配置】获取成功age");
-        return age;
+        return new RspBase().data(age);
     }
 
     @GetMapping("/test/error")
@@ -86,11 +89,27 @@ public class OrderController {
         return age;
     }
 
+    /**
+     * 公用的fallback方法
+     *
+     * @return
+     */
     public RspBase defaultFail() {
         log.info("【订单】失败");
         return new RspBase(Constants.CODE_FAILURE, "失败");
     }
 
+    /**
+     * 指定方法的fallback
+     */
+    public RspBase fallback(String id, String myHeader) {
+        log.info("【订单】失败fallback");
+        return new RspBase(Constants.CODE_FAILURE, "失败fallback");
+    }
+
+    /**
+     * 指定方法的限流异常处理方法
+     */
     public String defaultBlock(BlockException exception) {
         return "自定义BLOCK信息";
     }

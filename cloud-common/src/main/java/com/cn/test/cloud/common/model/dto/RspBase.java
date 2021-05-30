@@ -1,5 +1,7 @@
 package com.cn.test.cloud.common.model.dto;
 
+import com.cn.test.cloud.common.model.Constants;
+
 import java.io.Serializable;
 
 /**
@@ -7,7 +9,7 @@ import java.io.Serializable;
  * <p>Description: Http操作结果对象</p>
  */
 public class RspBase implements Serializable {
-    private int code;
+    private int code = Constants.CODE_SUCCESS;
     private String msg;
     private Object data;
 
