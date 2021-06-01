@@ -1,6 +1,6 @@
 [
 {
-    "resource": "getConfig",
+    "resource": "getOrder",
     "limitApp": "default",
     "grade": 1,
     "count": 1,
