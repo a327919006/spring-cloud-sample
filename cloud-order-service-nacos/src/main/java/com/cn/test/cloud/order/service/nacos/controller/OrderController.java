@@ -23,10 +23,11 @@ import org.springframework.web.client.RestTemplate;
  * @author Chen Nan
  * @date 2019/1/12.
  */
+@Slf4j
 @RefreshScope
 @RestController
 @RequestMapping("order")
-@Slf4j
+//@SentinelResource(defaultFallback = "defaultFallback")
 public class OrderController {
 
     @Autowired
@@ -44,9 +45,15 @@ public class OrderController {
     @Autowired
     private ConfigurableApplicationContext config;
 
+    /**
+     * blockHandlerClass：限流处理类
+     * blockHandler：指定被限流时的处理方法
+     * fallback：指定发生异常时的处理方法
+     */
     @GetMapping("/{id}")
-//    @SentinelResource(value = "getOrder", fallback = "fallback", blockHandler = "defaultBlock")
-    @SentinelResource(value = "getOrder", defaultFallback = "defaultFail", blockHandler = "defaultBlock")
+//    @SentinelResource(value = "getOrder", fallback = "fallback")
+//    @SentinelResource(value = "getOrder", blockHandler = "defaultBlock")
+    @SentinelResource(value = "getOrder", blockHandlerClass = SentinelBlockHandler.class, blockHandler = "rateLimit")
     public RspBase get(@PathVariable String id, @RequestHeader(required = false) String myHeader) {
         log.info("【订单】开始获取,id={},myHeader={}", id, myHeader);
         int i = Integer.parseInt(id);
@@ -74,8 +81,6 @@ public class OrderController {
     }
 
     @GetMapping("/config/age")
-//    @SentinelResource(value = "getConfig", blockHandler = "defaultBlock")
-    @SentinelResource(value = "getConfig", blockHandlerClass = SentinelBlockHandler.class, blockHandler = "rateLimit")
     public RspBase getAge() {
         log.info("【配置】开始获取age");
         log.info("【配置】获取成功age");
@@ -90,27 +95,28 @@ public class OrderController {
     }
 
     /**
-     * 公用的fallback方法
-     *
-     * @return
+     * 默认异常处理方法
+     * 请求参数需为空，响应参数与原方法一致
+     * 允许在最后增加一个参数Throwable，用来获取异常信息
      */
-    public RspBase defaultFail() {
-        log.info("【订单】失败");
-        return new RspBase(Constants.CODE_FAILURE, "失败");
+    public RspBase defaultFallback(Throwable e) {
+        return new RspBase(Constants.CODE_FAILURE, "失败默认fallback");
     }
 
     /**
-     * 指定方法的fallback
+     * 方法发生异常时的处理方法
+     * 请求、响应需与原方法保持一致
+     * 允许在最后增加一个参数Throwable，用来获取异常信息
      */
-    public RspBase fallback(String id, String myHeader) {
-        log.info("【订单】失败fallback");
+    public RspBase fallback(String id, String myHeader, Throwable e) {
         return new RspBase(Constants.CODE_FAILURE, "失败fallback");
     }
 
     /**
-     * 指定方法的限流异常处理方法
+     * 被限流时的处理方法
+     * 请求、响应需与原方法保持一致，并在最后增加一个参数BlockException
      */
-    public String defaultBlock(BlockException exception) {
-        return "自定义BLOCK信息";
+    public RspBase handleBlock(String id, String myHeader, BlockException exception) {
+        return new RspBase(Constants.CODE_FAILURE, "自定义BLOCK信息");
     }
 }
