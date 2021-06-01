@@ -47,7 +47,7 @@ public class OrderController {
 
     /**
      * blockHandlerClass：限流处理类
-     * blockHandler：指定被限流时的处理方法
+     * blockHandler：指定被限流时的处理方法，默认限流响应信息：Blocked by Sentinel (flow limiting)
      * fallback：指定发生异常时的处理方法
      */
     @GetMapping("/{id}")
