@@ -17,10 +17,6 @@ public class Constants {
     public static final int CODE_SUCCESS = 0;
     /** 应答码：失败 */
     public static final int CODE_FAILURE = 1;
-    /** 应答码：人脸库为空库 */
-    public static final int CODE_NOT_MATCH = 2;
-    /** 应答码：无人脸库 */
-    public static final int CODE_NOT_GROUP = 3;
 
     /** 默认页面大小 */
     public static final int DEFAULT_PAGE_SIZE = 10;
