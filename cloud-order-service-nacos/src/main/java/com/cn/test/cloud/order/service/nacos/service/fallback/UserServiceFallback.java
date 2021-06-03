@@ -2,6 +2,7 @@ package com.cn.test.cloud.order.service.nacos.service.fallback;
 
 import com.cn.test.cloud.common.model.Constants;
 import com.cn.test.cloud.common.model.dto.RspBase;
+import com.cn.test.cloud.common.model.po.User;
 import com.cn.test.cloud.order.service.nacos.service.UserService;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserServiceFallback implements UserService {
     @Override
-    public RspBase get(String id) {
-        return Constants.RSP_FALLBACK;
+    public RspBase<User> get(String id) {
+        return RspBase.fail(Constants.MSG_FALLBACK);
     }
 }

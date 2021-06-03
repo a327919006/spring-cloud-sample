@@ -2,8 +2,8 @@ package com.cn.test.cloud.order.service.nacos.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.cn.test.cloud.common.model.Constants;
 import com.cn.test.cloud.common.model.dto.RspBase;
+import com.cn.test.cloud.common.model.po.User;
 import com.cn.test.cloud.order.service.nacos.aop.SentinelBlockHandler;
 import com.cn.test.cloud.order.service.nacos.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -65,9 +65,9 @@ public class OrderController {
     }
 
     @GetMapping("/feign/{id}")
-    public RspBase feignGet(@PathVariable String id) {
+    public RspBase<User> feignGet(@PathVariable String id) {
         log.info("【订单】开始获取");
-        RspBase rspBase = userService.get(id);
+        RspBase<User> rspBase = userService.get(id);
         log.info("【订单】获取成功");
         return rspBase;
     }
@@ -81,10 +81,10 @@ public class OrderController {
     }
 
     @GetMapping("/config/age")
-    public RspBase getAge() {
+    public RspBase<String> getAge() {
         log.info("【配置】开始获取age");
         log.info("【配置】获取成功age");
-        return new RspBase().data(age);
+        return RspBase.data(age);
     }
 
     @GetMapping("/test/error")
@@ -100,7 +100,7 @@ public class OrderController {
      * 允许在最后增加一个参数Throwable，用来获取异常信息
      */
     public RspBase defaultFallback(Throwable e) {
-        return new RspBase(Constants.CODE_FAILURE, "失败默认fallback");
+        return RspBase.fail("失败默认fallback");
     }
 
     /**
@@ -109,7 +109,7 @@ public class OrderController {
      * 允许在最后增加一个参数Throwable，用来获取异常信息
      */
     public RspBase fallback(String id, String myHeader, Throwable e) {
-        return new RspBase(Constants.CODE_FAILURE, "失败fallback");
+        return RspBase.fail("失败fallback");
     }
 
     /**
@@ -117,6 +117,6 @@ public class OrderController {
      * 请求、响应需与原方法保持一致，并在最后增加一个参数BlockException
      */
     public RspBase handleBlock(String id, String myHeader, BlockException exception) {
-        return new RspBase(Constants.CODE_FAILURE, "自定义BLOCK信息");
+        return RspBase.fail("自定义BLOCK信息");
     }
 }

@@ -17,10 +17,10 @@ public class SentinelBlockHandler {
      * 请求、响应需与原方法保持一致，并在最后增加一个参数BlockException
      */
     public static RspBase rateLimit(String id, String myHeader, BlockException exception) {
-        return new RspBase(Constants.CODE_FAILURE, "接口繁忙，请稍后重试");
+        return RspBase.fail(Constants.CODE_FAILURE, "接口繁忙，请稍后重试");
     }
 
     public static RspBase rateLimit(BlockException exception) {
-        return new RspBase(Constants.CODE_FAILURE, "接口繁忙，请稍后重试2");
+        return RspBase.fail(Constants.CODE_FAILURE, "接口繁忙，请稍后重试2");
     }
 }

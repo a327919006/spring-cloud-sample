@@ -1,7 +1,5 @@
 package com.cn.test.cloud.common.model;
 
-import com.cn.test.cloud.common.model.dto.RspBase;
-
 /**
  * <p>Title: Constants</p>
  * <p>Description: 常量类</p>
@@ -13,15 +11,23 @@ public class Constants {
     }
 
     /* 通用应答码 URC-Universal Response Code */
-    /** 应答码：成功 */
+    /**
+     * 应答码：成功
+     */
     public static final int CODE_SUCCESS = 0;
-    /** 应答码：失败 */
+    /**
+     * 应答码：失败
+     */
     public static final int CODE_FAILURE = 1;
 
-    /** 默认页面大小 */
+    /**
+     * 默认页面大小
+     */
     public static final int DEFAULT_PAGE_SIZE = 10;
 
-    /** 用户session */
+    /**
+     * 用户session
+     */
     public static final String SESSION_USER = "session_user";
 
     /**
@@ -35,8 +41,7 @@ public class Constants {
     public static final String MSG_UNSUPPORT_THIRD_TYPE = "不支持的第三方类型";
     public static final String MSG_INVALID_TOKEN = "INVALID TOKEN";
     public static final String MSG_INVALID_CLIENT = "INVALID CLIENT";
-
-    public static final RspBase RSP_FALLBACK = new RspBase(CODE_FAILURE, "请求超时！");
+    public static final String MSG_FALLBACK = "请求失败!";
 
     public static final String HEADER_VERSION = "cn-version";
 }

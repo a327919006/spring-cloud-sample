@@ -82,7 +82,7 @@ public class AuthFilter extends ZuulFilter {
         if (!validToken(accessToken)) {
             context.setSendZuulResponse(false); // 过滤该请求，不对其进行路由
             context.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
-            context.setResponseBody(JSONUtil.toJsonStr(new RspBase(Constants.CODE_FAILURE, "INVALID TOKEN")));
+            context.setResponseBody(JSONUtil.toJsonStr(RspBase.fail(Constants.CODE_FAILURE, "INVALID TOKEN")));
         }
         return null;
     }

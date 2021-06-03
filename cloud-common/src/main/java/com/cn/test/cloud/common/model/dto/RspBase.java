@@ -1,6 +1,7 @@
 package com.cn.test.cloud.common.model.dto;
 
 import com.cn.test.cloud.common.model.Constants;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -8,66 +9,43 @@ import java.io.Serializable;
  * <p>Title: RspBase</p>
  * <p>Description: Http操作结果对象</p>
  */
-public class RspBase implements Serializable {
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+public class RspBase<T> implements Serializable {
     private int code = Constants.CODE_SUCCESS;
     private String msg;
-    private Object data;
+    private T data;
 
-    public RspBase() {
-    }
-
-    public RspBase code(final int code) {
-        this.code = code;
-        return this;
-    }
-
-    public RspBase msg(final String msg) {
-        this.msg = msg;
-        return this;
-    }
-
-    public RspBase data(final Object data) {
-        this.data = data;
-        return this;
-    }
-
-    public RspBase(int code, String msg) {
+    private RspBase(int code, String msg, T data) {
         this.code = code;
         this.msg = msg;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
         this.data = data;
     }
 
-    @Override
-    public String toString() {
-        return "RspBase{" +
-                "code=" + code +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                '}';
+    private RspBase(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public static <T> RspBase<T> data(T data) {
+        return data(Constants.CODE_SUCCESS, Constants.MSG_CMS_SUCCESS, data);
+    }
+
+    public static <T> RspBase<T> data(int code, T data) {
+        return data(code, Constants.MSG_CMS_SUCCESS, data);
+    }
+
+    public static <T> RspBase<T> data(int code, String msg, T data) {
+        return new RspBase<>(code, msg, data);
+    }
+
+    public static <T> RspBase<T> fail(String msg) {
+        return fail(Constants.CODE_FAILURE, msg);
+    }
+
+    public static <T> RspBase<T> fail(int code, String msg) {
+        return new RspBase<>(code, msg);
     }
 }

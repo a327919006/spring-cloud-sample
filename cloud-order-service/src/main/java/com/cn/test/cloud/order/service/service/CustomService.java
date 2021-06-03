@@ -18,5 +18,5 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(value = "custom", url = "http://localhost:10092")
 public interface CustomService {
     @GetMapping("/user/{id}")
-    RspBase get(@PathVariable("id") String id);
+    RspBase<User> get(@PathVariable("id") String id);
 }

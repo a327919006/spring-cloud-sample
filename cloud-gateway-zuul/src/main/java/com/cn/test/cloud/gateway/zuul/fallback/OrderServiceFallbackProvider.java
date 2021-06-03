@@ -1,6 +1,5 @@
 package com.cn.test.cloud.gateway.zuul.fallback;
 
-import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
 import com.cn.test.cloud.common.model.Constants;
 import com.cn.test.cloud.common.model.dto.RspBase;
@@ -63,7 +62,7 @@ public class OrderServiceFallbackProvider implements FallbackProvider {
 
             @Override
             public InputStream getBody() throws IOException {
-                RspBase rspBase = new RspBase(Constants.CODE_FAILURE, getRoute() + "请求超时");
+                RspBase<String> rspBase = RspBase.fail(Constants.CODE_FAILURE, getRoute() + "请求超时");
                 String rsp = JSONUtil.toJsonStr(rspBase);
                 return new ByteArrayInputStream(rsp.getBytes());
             }
