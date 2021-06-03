@@ -28,15 +28,15 @@ spring:
         dashboard: localhost:8090 #配置Sentinel dashboard地址，默认8080
         port: 8719 #通信端口，默认8719，如果被占用会依次+1扫描，直至找到可用端口
       # 持久化配置，从Nacos中读取限流配置
-      datasource:
-        ds1:
-          nacos:
-            server-addr: localhost:8848
-            dataId: ${spring.application.name}
-            groupId: DEFAULT_GROUP
-#            namespace: 8622d428-0496-4a09-b178-da3cfc736055
-            data-type: json
-            rule-type: flow
+#      datasource:
+#        ds1:
+#          nacos:
+#            server-addr: localhost:8848
+#            dataId: ${spring.application.name}
+#            groupId: DEFAULT_GROUP
+##            namespace: 8622d428-0496-4a09-b178-da3cfc736055
+#            data-type: json
+#            rule-type: flow
 
 #配置feign开启sentinel熔断
 #feign:
