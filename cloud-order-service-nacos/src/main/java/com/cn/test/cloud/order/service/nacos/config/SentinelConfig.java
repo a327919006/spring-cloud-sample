@@ -16,7 +16,7 @@ import java.util.List;
  * @author Chen Nan
  */
 @Slf4j
-@Configuration
+//@Configuration
 public class SentinelConfig {
 
     @Bean
