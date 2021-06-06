@@ -1,5 +1,6 @@
 package com.cn.test.cloud.order.service.nacos.controller;
 
+import cn.hutool.core.thread.ThreadUtil;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.cn.test.cloud.common.model.dto.RspBase;
@@ -88,10 +89,17 @@ public class OrderController {
     }
 
     @GetMapping("/test/error")
-    public String testError() {
+    public RspBase<String> testError() {
         log.info("【测试】发生业务异常，上报prometheus");
         int i = 1 / 0;
-        return age;
+        return RspBase.data(age);
+    }
+
+    @GetMapping("/test/timeout")
+    public RspBase<String> testTimeout(@RequestParam(required = false, defaultValue = "1000") int timeout) {
+        log.info("【测试】发生业务超时");
+        ThreadUtil.sleep(timeout);
+        return RspBase.data(age);
     }
 
     /**
