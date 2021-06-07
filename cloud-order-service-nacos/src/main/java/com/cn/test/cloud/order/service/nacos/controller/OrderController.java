@@ -28,7 +28,7 @@ import org.springframework.web.client.RestTemplate;
 @RefreshScope
 @RestController
 @RequestMapping("order")
-//@SentinelResource(defaultFallback = "defaultFallback")
+@SentinelResource(defaultFallback = "defaultFallback")
 public class OrderController {
 
     @Autowired
@@ -82,6 +82,7 @@ public class OrderController {
     }
 
     @GetMapping("/config/age")
+    @SentinelResource(value = "getAge")
     public RspBase<String> getAge() {
         log.info("【配置】开始获取age");
         log.info("【配置】获取成功age");
@@ -106,8 +107,9 @@ public class OrderController {
      * 默认异常处理方法
      * 请求参数需为空，响应参数与原方法一致
      * 允许在最后增加一个参数Throwable，用来获取异常信息
+     * 被限流方法需使用自定义资源名称，如：@SentinelResource(value = "getAge")
      */
-    public RspBase defaultFallback(Throwable e) {
+    public RspBase<String> defaultFallback(Throwable e) {
         return RspBase.fail("失败默认fallback");
     }
 
@@ -116,7 +118,7 @@ public class OrderController {
      * 请求、响应需与原方法保持一致
      * 允许在最后增加一个参数Throwable，用来获取异常信息
      */
-    public RspBase fallback(String id, String myHeader, Throwable e) {
+    public RspBase<String> fallback(String id, String myHeader, Throwable e) {
         return RspBase.fail("失败fallback");
     }
 
@@ -124,7 +126,7 @@ public class OrderController {
      * 被限流时的处理方法
      * 请求、响应需与原方法保持一致，并在最后增加一个参数BlockException
      */
-    public RspBase handleBlock(String id, String myHeader, BlockException exception) {
+    public RspBase<String> handleBlock(String id, String myHeader, BlockException exception) {
         return RspBase.fail("自定义BLOCK信息");
     }
 }
