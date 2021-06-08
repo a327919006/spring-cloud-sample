@@ -9,11 +9,21 @@ spring:
       discovery:
         server-addr: localhost:8848
     sentinel:
+      enabled: false # 是否启用sentinel
+      eager: true # 饥饿模式
+#      filter:
+#        enabled: false
       transport:
         # 本地端口
         port: 8720
         # sentinel服务端地址
         dashboard: localhost:8090
+      scg:
+        fallback:
+          mode: response # 限流/降级时支持返回内容或跳转界面 redirect or response
+          response-body: '{"code":429,"msg":"请求失败，请稍后重试！"}' # 返回的内容
+          response-status: 429 # 返回的http状态码
+          redirect: http://baidu.com # 跳转地址
     # 路由网关配置
     gateway:
       # 设置与服务注册发现组件结合，这样可以采用服务名的路由策略
