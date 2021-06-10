@@ -9,7 +9,7 @@ spring:
       discovery:
         server-addr: localhost:8848
     sentinel:
-      enabled: true # 是否启用sentinel
+      enabled: false # 是否启用sentinel
 #      filter:
 #        enabled: false
       transport:
@@ -27,7 +27,7 @@ spring:
         gw-flow:
           nacos:
             server-addr: localhost:8848
-            dataId: ${spring.application.name}-gateway-flow-rules
+            dataId: ${spring.application.name}-gateway-flow
             groupId: SENTINEL_GROUP
             data-type: json # 默认json
             rule-type: gw-flow
