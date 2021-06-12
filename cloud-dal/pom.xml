@@ -11,5 +11,18 @@
 
     <artifactId>cloud-dal</artifactId>
 
+    <dependencies>
+        <!--tk.mybatis-->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+        </dependency>
 
+        <!--models-->
+        <dependency>
+            <groupId>com.cn.cloud</groupId>
+            <artifactId>cloud-common</artifactId>
+            <version>${cloud-common.version}</version>
+        </dependency>
+    </dependencies>
 </project>

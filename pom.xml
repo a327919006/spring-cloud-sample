@@ -50,9 +50,15 @@
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
 
+        <!--util-->
         <lombok.version>1.18.8</lombok.version>
         <hutool.version>4.6.1</hutool.version>
 
+        <!--tk.mybatis-->
+        <tk.mybatis.mapper.version>2.1.5</tk.mybatis.mapper.version>
+        <persistence-api.version>1.0</persistence-api.version>
+
+        <!--zookeeper-->
         <zookeeper.version>3.4.14</zookeeper.version>
 
         <!-- plugins -->
@@ -104,6 +110,17 @@
                 <version>${hutool.version}</version>
             </dependency>
 
+            <!--tk.mybatis-->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${tk.mybatis.mapper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>persistence-api</artifactId>
+                <version>${persistence-api.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
