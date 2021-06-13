@@ -34,6 +34,11 @@
             <artifactId>cloud-common</artifactId>
             <version>${cloud-common.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.cn.cloud</groupId>
+            <artifactId>cloud-dal</artifactId>
+            <version>${cloud-common.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

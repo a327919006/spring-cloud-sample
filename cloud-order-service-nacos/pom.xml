@@ -56,10 +56,10 @@
         </dependency>
 
         <!--seata-->
-        <dependency>
+        <!--<dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>io.micrometer</groupId>
@@ -76,6 +76,11 @@
         <dependency>
             <groupId>com.cn.cloud</groupId>
             <artifactId>cloud-dal</artifactId>
+            <version>${cloud-common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cn.cloud</groupId>
+            <artifactId>cloud-user-api</artifactId>
             <version>${cloud-common.version}</version>
         </dependency>
     </dependencies>

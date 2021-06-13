@@ -4,7 +4,7 @@ import com.cn.test.cloud.common.model.po.User;
 import com.cn.test.cloud.common.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomUtils;
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class OrderController {
 
-    @Reference
+    @DubboReference
     private UserService userService;
 
     @GetMapping("/{name}")
@@ -28,8 +28,8 @@ public class OrderController {
         user.setName(name);
         user.setAge(RandomUtils.nextInt(10, 30));
 
-        User result = userService.insert(user);
-        log.info("测试成功");
-        return result;
+        int result = userService.insert(user);
+        log.info("测试成功,result={}", result);
+        return user;
     }
 }

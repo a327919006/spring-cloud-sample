@@ -1,7 +1,10 @@
 package com.cn.test.cloud.common.model.dto;
 
 import com.cn.test.cloud.common.model.Constants;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -47,5 +50,13 @@ public class RspBase<T> implements Serializable {
 
     public static <T> RspBase<T> fail(int code, String msg) {
         return new RspBase<>(code, msg);
+    }
+
+    public static <T> RspBase<T> success() {
+        return new RspBase<>(Constants.CODE_SUCCESS, Constants.MSG_SUCCESS);
+    }
+
+    public boolean isSuccess() {
+        return code == Constants.CODE_SUCCESS;
     }
 }

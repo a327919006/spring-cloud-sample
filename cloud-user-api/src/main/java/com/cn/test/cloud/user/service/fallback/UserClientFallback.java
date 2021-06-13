@@ -1,18 +1,24 @@
-package com.cn.test.cloud.order.service.nacos.service.fallback;
+package com.cn.test.cloud.user.service.fallback;
 
 import com.cn.test.cloud.common.model.Constants;
 import com.cn.test.cloud.common.model.dto.RspBase;
 import com.cn.test.cloud.common.model.po.User;
-import com.cn.test.cloud.order.service.nacos.service.UserService;
+import com.cn.test.cloud.user.service.UserClient;
 import org.springframework.stereotype.Component;
 
 /**
  * @author Chen Nan
  */
 @Component
-public class UserServiceFallback implements UserService {
+public class UserClientFallback implements UserClient {
+
     @Override
     public RspBase<User> get(String id) {
+        return RspBase.fail(Constants.MSG_FALLBACK);
+    }
+
+    @Override
+    public RspBase<String> decrease(Long userId, Double price) {
         return RspBase.fail(Constants.MSG_FALLBACK);
     }
 }

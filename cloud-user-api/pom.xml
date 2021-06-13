@@ -9,19 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-dal</artifactId>
+    <artifactId>cloud-user-api</artifactId>
 
     <dependencies>
-        <!-- Mybatis依赖配置 -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-
-        <!--tk.mybatis-->
-        <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper-spring-boot-starter</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
         <!--models-->
@@ -31,4 +24,5 @@
             <version>${cloud-common.version}</version>
         </dependency>
     </dependencies>
+
 </project>

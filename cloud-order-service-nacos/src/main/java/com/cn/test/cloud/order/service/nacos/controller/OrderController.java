@@ -3,10 +3,12 @@ package com.cn.test.cloud.order.service.nacos.controller;
 import cn.hutool.core.thread.ThreadUtil;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.cn.test.cloud.common.model.dto.OrderDTO;
 import com.cn.test.cloud.common.model.dto.RspBase;
 import com.cn.test.cloud.common.model.po.User;
+import com.cn.test.cloud.common.service.OrderService;
 import com.cn.test.cloud.order.service.nacos.aop.SentinelBlockHandler;
-import com.cn.test.cloud.order.service.nacos.service.UserService;
+import com.cn.test.cloud.user.service.UserClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,7 +40,10 @@ public class OrderController {
     private LoadBalancerClient loadBalancerClient;
 
     @Autowired
-    private UserService userService;
+    private OrderService orderService;
+
+    @Autowired
+    private UserClient userClient;
 
     @Value("${user.age}")
     private String age;
@@ -49,7 +54,7 @@ public class OrderController {
     /**
      * blockHandlerClass：限流处理类
      * blockHandler：指定被限流/降级时的处理方法(即触发sentinel控制台配置的限流或降级等规则时)，
-     *               默认响应信息：Blocked by Sentinel (flow limiting)
+     * 默认响应信息：Blocked by Sentinel (flow limiting)
      * fallback：指定业务发生异常时的处理方法
      */
     @GetMapping("/{id}")
@@ -69,7 +74,7 @@ public class OrderController {
     @GetMapping("/feign/{id}")
     public RspBase<User> feignGet(@PathVariable String id) {
         log.info("【订单】开始获取");
-        RspBase<User> rspBase = userService.get(id);
+        RspBase<User> rspBase = userClient.get(id);
         log.info("【订单】获取成功");
         return rspBase;
     }
@@ -102,6 +107,11 @@ public class OrderController {
         log.info("【测试】发生业务超时");
         ThreadUtil.sleep(timeout);
         return RspBase.data(age);
+    }
+
+    @PostMapping
+    public RspBase<String> createOrder(@RequestBody OrderDTO param) {
+        return orderService.createOrder(param);
     }
 
     /**

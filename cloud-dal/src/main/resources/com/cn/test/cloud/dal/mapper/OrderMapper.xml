@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cn.boot.sample.dal.mapper.OrderMapper">
+<mapper namespace="com.cn.test.cloud.dal.mapper.OrderMapper">
     <resultMap id="BaseResultMap" type="com.cn.test.cloud.common.model.po.Order">
         <!--
           WARNING - @mbg.generated
@@ -8,11 +8,12 @@
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
         <result column="order_id" jdbcType="BIGINT" property="orderId"/>
+        <result column="price" jdbcType="DOUBLE" property="price"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--
           WARNING - @mbg.generated
         -->
-        id, user_id, order_id
+        id, user_id, order_id, price
     </sql>
 </mapper>

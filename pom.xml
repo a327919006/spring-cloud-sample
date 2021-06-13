@@ -35,6 +35,8 @@
         <module>cloud-oauth-server</module>
         <module>cloud-stream-provider</module>
         <module>cloud-stream-consumer</module>
+        <module>cloud-order-api</module>
+        <module>cloud-user-api</module>
     </modules>
 
     <properties>
@@ -53,6 +55,7 @@
         <!--util-->
         <lombok.version>1.18.8</lombok.version>
         <hutool.version>4.6.1</hutool.version>
+        <mysql-connector-java.versioin>8.0.20</mysql-connector-java.versioin>
 
         <!--tk.mybatis-->
         <tk.mybatis.mapper.version>2.1.5</tk.mybatis.mapper.version>
@@ -122,6 +125,12 @@
                 <version>${persistence-api.version}</version>
             </dependency>
 
+            <!--mysql-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.versioin}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
