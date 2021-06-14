@@ -23,4 +23,7 @@ public class Order implements Serializable {
 
     @Column(name = "price")
     private Double price;
+
+    @Column(name = "status")
+    private Integer status;
 }
