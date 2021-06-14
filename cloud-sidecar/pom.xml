@@ -25,10 +25,11 @@
             <scope>import</scope>
         </dependency>
 
-        <dependency>
+        <!--spring-cloud 2020后已删除此依赖-->
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-netflix-sidecar</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>

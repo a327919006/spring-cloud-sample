@@ -35,10 +35,11 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
-        <dependency>
+        <!--spring-cloud 2020后已删除此依赖-->
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!--SpringCloud配置中心-->
         <!--<dependency>

@@ -1,5 +1,75 @@
+spring:
+  cloud:
+    nacos:
+      # 建议将注册中心相关配置配置到application.yaml或nacos上，而不是配置到application
+      discovery:
+        # 服务注册时上报的ip
+        ip: 127.0.0.1
+        server-addr: localhost:8848
+        # 服务注册是写入自定义元数据
+        metadata:
+          cn-version: ${project.version}
+          data1: aaa
+          dataxx: bbb
+    sentinel:
+      enabled: false # 是否启用sentinel
+      eager: true # 饥饿模式
+      transport:
+        dashboard: localhost:8090 #配置Sentinel dashboard地址，默认8080
+        port: 8719 #通信端口，默认8719，如果被占用会依次+1扫描，直至找到可用端口
+      # 持久化配置，从Nacos中读取限流配置
+      datasource:
+        # 名称随意
+        flow:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-flow-rules
+            groupId: SENTINEL_GROUP
+            #            namespace: 8622d428-0496-4a09-b178-da3cfc736055
+            data-type: json # 默认json
+            rule-type: flow
+        degrade:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-degrade-rules
+            groupId: SENTINEL_GROUP
+            rule-type: degrade
+        system:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-system-rules
+            groupId: SENTINEL_GROUP
+            rule-type: system
+        authority:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-authority-rules
+            groupId: SENTINEL_GROUP
+            rule-type: authority
+        param-flow:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-param-flow-rules
+            groupId: SENTINEL_GROUP
+            rule-type: param-flow
+  # 数据库连接配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud_sample_order?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: chennan
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-test-query: SELECT 1
+
+#配置feign开启sentinel熔断
+feign:
+  sentinel:
+    enabled: true
+
+#自定义配置
 user:
   age: 15
+
 
 ribbon:
   # 饥饿加载
@@ -21,18 +91,27 @@ management:
       exposure:
         include: '*'
 
-spring:
-  # 数据库连接配置
-  datasource:
-    url: jdbc:mysql://localhost:3306/cloud_sample?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: chennan
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      connection-test-query: SELECT 1
-
 mybatis:
   typeAliasesPackage: com.cn.test.cloud.common.model.po
   mapperLocations: classpath:com/cn/test/cloud/commom/dal/mapper/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+seata:
+  enabled: true
+  application-id: ${artifactId}
+  # 启动自动开启数据源代理
+  enable-auto-data-source-proxy: true
+  # 项目的微服务都要配置一样的事务分组
+  # 并且要和seata-server的service.vgroupMapping.cn_tx_group=default一致
+  tx-service-group: cn_tx_group
+  config:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      group: SEATA_GROUP
+  registry:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      group: SEATA_GROUP

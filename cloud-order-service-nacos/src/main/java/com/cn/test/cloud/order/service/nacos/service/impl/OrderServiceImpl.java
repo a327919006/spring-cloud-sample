@@ -7,6 +7,7 @@ import com.cn.test.cloud.common.model.po.Order;
 import com.cn.test.cloud.common.service.OrderService;
 import com.cn.test.cloud.dal.mapper.OrderMapper;
 import com.cn.test.cloud.user.service.UserClient;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class OrderServiceImpl extends BaseServiceImpl<OrderMapper, Order, String
     private UserClient userClient;
 
     @Override
+    @GlobalTransactional(rollbackFor = Exception.class) // 开启全局事务
     public RspBase<String> createOrder(OrderDTO param) {
         Order order = new Order();
         order.setUserId(param.getUserId());

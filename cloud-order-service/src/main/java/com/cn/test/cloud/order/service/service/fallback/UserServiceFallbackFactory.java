@@ -6,8 +6,9 @@ import com.cn.test.cloud.common.model.dto.RspBase;
 import com.cn.test.cloud.common.model.po.User;
 import com.cn.test.cloud.order.service.service.UserService;
 import feign.Response;
-import feign.hystrix.FallbackFactory;
+//import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
