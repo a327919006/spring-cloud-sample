@@ -24,7 +24,7 @@ management:
 spring:
   # 数据库连接配置
   datasource:
-    url: jdbc:mysql://localhost:3306/cloud_sample?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/cloud_sample_order?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: chennan
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -36,3 +36,22 @@ mybatis:
   mapperLocations: classpath:com/cn/test/cloud/commom/dal/mapper/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+seata:
+  enabled: true
+  application-id: ${artifactId}
+  # 启动自动开启数据源代理
+  enable-auto-data-source-proxy: true
+  # 项目的微服务都要配置一样的事务分组
+  # 并且要和seata-server的service.vgroupMapping.cn_tx_group=default一致
+  tx-service-group: cn_tx_group
+  config:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      group: SEATA_GROUP
+  registry:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      group: SEATA_GROUP
