@@ -38,7 +38,7 @@ mybatis:
     map-underscore-to-camel-case: true
 
 seata:
-  enabled: true
+  enabled: false
   application-id: ${artifactId}
   # 启动自动开启数据源代理
   enable-auto-data-source-proxy: true
