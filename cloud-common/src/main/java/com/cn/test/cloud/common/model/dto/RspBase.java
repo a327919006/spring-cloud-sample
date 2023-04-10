@@ -33,11 +33,11 @@ public class RspBase<T> implements Serializable {
     }
 
     public static <T> RspBase<T> data(T data) {
-        return data(Constants.CODE_SUCCESS, Constants.MSG_CMS_SUCCESS, data);
+        return data(Constants.CODE_SUCCESS, Constants.MSG_SUCCESS, data);
     }
 
     public static <T> RspBase<T> data(int code, T data) {
-        return data(code, Constants.MSG_CMS_SUCCESS, data);
+        return data(code, Constants.MSG_SUCCESS, data);
     }
 
     public static <T> RspBase<T> data(int code, String msg, T data) {
