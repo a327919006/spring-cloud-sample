@@ -3,7 +3,7 @@ spring:
     active: ${profileActive}
   application:
     # 这里的应用名对应 Nacos Config 中的 Data ID，实际应用名称以配置中心的配置为准
-    name: ${artifactId}
+    name: ${project.artifactId}
   cloud:
     nacos:
       config:
@@ -67,4 +67,8 @@ spring:
 #配置feign开启sentinel熔断
 feign:
   sentinel:
-    enabled: true
+    enabled: false
+
+#gray:
+#  weight:
+#    1.0.0: 100

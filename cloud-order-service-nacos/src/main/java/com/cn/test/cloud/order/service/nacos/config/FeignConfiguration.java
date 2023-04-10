@@ -25,6 +25,8 @@ public class FeignConfiguration {
             if (attributes == null) {
                 return;
             }
+            // 需要根据参数实现动态路由，则可使用param设置到requestTemplate的paramMap中或者Header中
+            // String param = new String(requestTemplate.body());
             HttpServletRequest request = attributes.getRequest();
             String version = request.getHeader(Constants.HEADER_VERSION);
             if (StringUtils.isNotEmpty(version)) {

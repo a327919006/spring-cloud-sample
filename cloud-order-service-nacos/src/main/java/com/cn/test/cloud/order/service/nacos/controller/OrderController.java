@@ -88,11 +88,22 @@ public class OrderController {
     }
 
     @GetMapping("/config/age")
-    @SentinelResource(value = "getAge")
+    // @SentinelResource(value = "getAge")
     public RspBase<String> getAge() {
         log.info("【配置】开始获取age");
         log.info("【配置】获取成功age");
         return RspBase.data(age);
+    }
+
+
+    @PostMapping("/test/gray")
+    public RspBase<User> testGray() {
+        log.info("【订单】开始获取");
+        User user = new User();
+        user.setId("123");
+        RspBase<User> rspBase = userClient.getByUser(user);
+        log.info("【订单】获取成功");
+        return rspBase;
     }
 
     @GetMapping("/test/error")
