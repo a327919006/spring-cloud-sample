@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: ${profileActive}
+  application:
+    # 这里的应用名对应 Nacos Config 中的 Data ID，实际应用名称以配置中心的配置为准
+    name: ${project.artifactId}
+  cloud:
+    nacos:
+      config:
+        # 指定查找名为 ${spring.application.name}-${spring.profiles.active}.yaml 的配置文件
+        file-extension: yaml
+        # 声明基础配置文件，多个配置中有相同部分可声明在基础配置中，支持配置多项
+        shared-configs:
+          - data-id: common-${profileActive}.yaml
+            refresh: true

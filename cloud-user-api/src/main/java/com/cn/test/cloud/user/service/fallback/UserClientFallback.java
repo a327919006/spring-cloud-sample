@@ -18,6 +18,11 @@ public class UserClientFallback implements UserClient {
     }
 
     @Override
+    public RspBase<User> getByUser(User user) {
+        return RspBase.fail(Constants.MSG_FALLBACK);
+    }
+
+    @Override
     public RspBase<String> decrease(Long userId, Double price) {
         return RspBase.fail(Constants.MSG_FALLBACK);
     }

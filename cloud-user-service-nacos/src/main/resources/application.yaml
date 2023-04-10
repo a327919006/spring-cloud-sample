@@ -2,8 +2,6 @@ server:
   port: 10090
 
 spring:
-  application:
-    name: ${artifactId}
   cloud:
     nacos:
       discovery:
@@ -45,3 +43,5 @@ seata:
       server-addr: localhost:8848
       group: SEATA_GROUP
 
+user:
+  age: 15
