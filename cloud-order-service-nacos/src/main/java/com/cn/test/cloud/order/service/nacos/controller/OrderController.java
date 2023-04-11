@@ -97,11 +97,11 @@ public class OrderController {
 
 
     @PostMapping("/test/gray")
-    public RspBase<User> testGray() {
+    public RspBase<User> testGray(@RequestHeader String env) {
         log.info("【订单】开始获取");
         User user = new User();
         user.setId("123");
-        RspBase<User> rspBase = userClient.getByUser(user);
+        RspBase<User> rspBase = userClient.getByUser(env, user);
         log.info("【订单】获取成功");
         return rspBase;
     }

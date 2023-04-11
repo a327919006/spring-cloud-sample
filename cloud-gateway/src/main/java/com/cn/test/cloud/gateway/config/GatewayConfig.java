@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Chen Nan
  */
-@Configuration
+// @Configuration
 public class GatewayConfig {
 
     @Bean

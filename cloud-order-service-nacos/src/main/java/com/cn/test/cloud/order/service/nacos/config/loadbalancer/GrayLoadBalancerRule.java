@@ -48,9 +48,13 @@ public class GrayLoadBalancerRule extends AbstractLoadBalancerRule {
         try {
             ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             String version = requestAttributes.getRequest().getHeader(Constants.HEADER_VERSION);
+            String env = requestAttributes.getRequest().getHeader("env");
 
             BaseLoadBalancer baseLoadBalancer = (BaseLoadBalancer) getLoadBalancer();
             String serviceName = baseLoadBalancer.getName();
+            if(StringUtils.isNotEmpty(env)){
+                serviceName = serviceName + "-" + env;
+            }
             String clusterName = nacosDiscoveryProperties.getClusterName();
             String group = nacosDiscoveryProperties.getGroup();
 

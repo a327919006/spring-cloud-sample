@@ -32,6 +32,10 @@ public class FeignConfiguration {
             if (StringUtils.isNotEmpty(version)) {
                 requestTemplate.header(Constants.HEADER_VERSION, version);
             }
+            String env = request.getHeader("env");
+            if (StringUtils.isNotEmpty(env)) {
+                requestTemplate.header("env", env);
+            }
         };
     }
 }

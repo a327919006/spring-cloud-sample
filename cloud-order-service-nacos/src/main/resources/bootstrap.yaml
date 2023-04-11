@@ -69,6 +69,6 @@ feign:
   sentinel:
     enabled: false
 
-#gray:
-#  weight:
-#    1.0.0: 100
+gray:
+  weight:
+    1.0.0: 100

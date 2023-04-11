@@ -58,9 +58,14 @@ spring:
 #        - After=2021-05-26T10:23:13.880+08:00[Asia/Shanghai] # After 这个时间之后才能访问，Before之前，Between之间
 #        - Cookie=username, test # Cookie，请求必须包含Cookie，且名称为username，值为test（支持正则）
 #        - Method=GET,POST # Method，只接受GET和POST请求
-#        - Header=token, \d+ # Header，请求必须包含header，且名称为token，值为数字（支持正则）
+#        - Header=gateway,test1 # Header，请求必须包含header，且名称为token，值为数字（支持正则）
 #        - Query=username # Query 请求必须包含参数，参数名为username，也可指定参数值username, test
 #        - RemoteAddr=192.168.1.1/24 # RemoteAddr 只允许某个ip段访问此接口
+#      - id: CLOUD-ORDER-SERVICE-TEST
+#        uri: lb://cloud-order-service-nacos-test
+#        predicates:
+#        - Path=/order/** # Path，根据访问路径匹配，即可直接用/order代替完整服务名
+#        - Header=gateway,test2 # Header，请求必须包含header，且名称为token，值为数字（支持正则）
       - id: CLOUD-USER-SERVICE
         uri: lb://cloud-user-service-nacos
         predicates:

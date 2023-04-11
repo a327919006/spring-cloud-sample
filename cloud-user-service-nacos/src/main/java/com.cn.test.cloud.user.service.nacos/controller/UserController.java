@@ -47,7 +47,7 @@ public class UserController implements UserClient {
 
     @Override
     @PostMapping("/get")
-    public RspBase<User> getByUser(User param) {
+    public RspBase<User> getByUser(@RequestHeader(value = "env", required = false) String env, User param) {
         log.info("【用户】开始获取" + param.getId());
         User user = new User();
         user.setId(param.getId());

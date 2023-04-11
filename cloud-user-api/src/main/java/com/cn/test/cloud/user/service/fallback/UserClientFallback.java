@@ -18,7 +18,7 @@ public class UserClientFallback implements UserClient {
     }
 
     @Override
-    public RspBase<User> getByUser(User user) {
+    public RspBase<User> getByUser(String env, User user) {
         return RspBase.fail(Constants.MSG_FALLBACK);
     }
 

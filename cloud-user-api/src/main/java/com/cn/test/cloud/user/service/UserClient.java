@@ -17,7 +17,7 @@ public interface UserClient {
     RspBase<User> get(@PathVariable("id") String id);
 
     @PostMapping(PREFIX + "/get")
-    RspBase<User> getByUser(User user);
+    RspBase<User> getByUser(@RequestHeader("env") String env, User user);
 
     @PutMapping(PREFIX + "/{id}/decrease")
     RspBase<String> decrease(@PathVariable("id") Long userId, @RequestParam("price") Double price);
